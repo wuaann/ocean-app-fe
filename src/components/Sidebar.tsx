@@ -1,60 +1,82 @@
-import {Outlet} from "react-router-dom";
-import {faBars, faClapperboard, faHouse, faMagnifyingGlass, faUser} from "@fortawesome/free-solid-svg-icons";
+import {NavLink, Outlet} from "react-router-dom";
+import {
+    faArrowRightFromBracket,
+    faBars,
+    faClapperboard, faGear,
+    faHouse,
+    faMagnifyingGlass, faRepeat
+} from "@fortawesome/free-solid-svg-icons";
 import {faCompass, faHeart} from '@fortawesome/free-regular-svg-icons';
-import React from "react";
+import React, {useState} from "react";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faFacebookMessenger} from "@fortawesome/free-brands-svg-icons";
+import {useAppDispatch} from "../app/hooks";
+import {authActions} from "../features/auth/authSlice";
 
 function Sidebar() {
+
+    const [showButton, setShowButton] = useState(false)
+
+    const dispatch = useAppDispatch()
+
+    const handleLogout =() =>{
+        dispatch(authActions.logout())
+    }
+
+    const handleShow = () => {
+        setShowButton(!showButton)
+    }
+
     return (
         <>
-            <aside id="default-sidebar"
-                   className="fixed  top-0 left-0 z-40 w-64 h-screen transition-transform -translate-x-full sm:translate-x-0"
+            <aside id="default-sidebar "
+                   className="fixed bg-black top-0 left-0 z-40 w-80 h-screen transition-transform -translate-x-full sm:translate-x-0"
                    aria-label="Sidebar">
                 <div
                     className="h-full px-3 py-4 overflow-y-auto dark:bg-black border-r-gray-700 border-r  flex flex-col justify-between">
                     <div>
-                        <h1 className="font-lobster mt-3 mb-6 cursor-pointer text-transparent text-5xl bg-clip-text bg-gradient-to-r text-white ">Oceania</h1>
+                        <h1 className="font-lobster mt-3 mb-6 cursor-pointer text-transparent text-5xl bg-clip-text bg-gradient-to-r text-white "><NavLink to={"/"} className={"ml-3"}>Oceania</NavLink></h1>
 
-                        <ul className="space-y-2 font-normal text-base">
+                        <ul className="space-y-2   text-white font-normal text-base">
                             <li>
                                 <div
-                                    className="flex items-center p-3 m-1  text-white rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                                    className="flex items-center p-3 m-1  cursor-pointer text-white rounded-lg dark:text-white hover:bg-gray-100 hover:bg-opacity-10  dark:hover:bg-gray-700 group">
                                     <FontAwesomeIcon size={"xl"} icon={faHouse}/>
-                                    <span className="ml-3">Home</span>
+                                    <NavLink to={"/"} className={"ml-3"}>Home</NavLink>
                                 </div>
+
                             </li>
                             <li>
                                 <div
-                                    className="flex items-center p-3 m-1 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                                    className="flex  items-center p-3 m-1  cursor-pointer  text-white rounded-lg dark:text-white hover:bg-gray-100 hover:bg-opacity-10 dark:hover:bg-gray-700 group">
                                     <FontAwesomeIcon size={"xl"} icon={faMagnifyingGlass}/>
-                                    <span className="flex-1 ml-3 whitespace-nowrap">Search</span>
+                                    <span className="flex-1   ml-3 whitespace-nowrap">Search</span>
                                 </div>
                             </li>
                             <li>
                                 <div
-                                    className="flex items-center p-3 m-1 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                                    className="flex items-center   text-white p-3 m-1 cursor-pointer  rounded-lg dark:text-white hover:bg-gray-100 hover:bg-opacity-10 dark:hover:bg-gray-700 group">
                                     <FontAwesomeIcon size={"xl"} icon={faCompass} spin spinReverse/>
                                     <span className="flex-1 ml-3 whitespace-nowrap">Explore</span>
                                 </div>
                             </li>
                             <li>
                                 <div
-                                    className="flex items-center p-3 m-1 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                                    className="flex items-center  text-white  p-3 m-1  cursor-pointer rounded-lg dark:text-white hover:bg-gray-100 hover:bg-opacity-10 dark:hover:bg-gray-700 group">
                                     <FontAwesomeIcon size={"xl"} icon={faClapperboard}/>
                                     <span className="flex-1 ml-3 whitespace-nowrap">Reels</span>
                                 </div>
                             </li>
                             <li>
                                 <div
-                                    className="flex items-center p-3 m-1 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                                    className="flex items-center p-3 m-1  cursor-pointer  text-white rounded-lg dark:text-white hover:bg-gray-100 hover:bg-opacity-10 dark:hover:bg-gray-700 group">
                                     <FontAwesomeIcon size={"xl"} icon={faHeart}/>
                                     <span className="flex-1 ml-3 whitespace-nowrap">Notifications</span>
                                 </div>
                             </li>
                             <li>
                                 <div
-                                    className="flex items-center p-3 m-1 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                                    className="flex items-center p-3 m-1  cursor-pointer  text-white rounded-lg dark:text-white hover:bg-gray-100 hover:bg-opacity-10 dark:hover:bg-gray-700 group">
                                     <FontAwesomeIcon size={"xl"} icon={faFacebookMessenger}/>
                                     <span className="flex-1 ml-3 whitespace-nowrap">Messages</span>
                                     <span
@@ -63,24 +85,63 @@ function Sidebar() {
                             </li>
                             <li>
                                 <div
-                                    className="flex items-center p-3 m-1 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                                    className="flex items-center p-3 m-1  cursor-pointer  text-white rounded-lg dark:text-white hover:bg-gray-100 hover:bg-opacity-10 dark:hover:bg-gray-700 group">
                                     <div className={"w-6"}>
                                         <img className={"rounded-full"}
                                              src="https://static.vecteezy.com/system/resources/previews/005/544/718/original/profile-icon-design-free-vector.jpg"
                                              alt=""/>
                                     </div>
-                                    <span className="flex-1 ml-3 whitespace-nowrap">Profile</span>
+                                    <NavLink to={"/profile"} className={"flex-1 ml-3 whitespace-nowrap"}>Profile</NavLink>
                                 </div>
                             </li>
                         </ul>
 
                     </div>
                     <div className={"text-white"}>
+
+                        {
+                            showButton &&
+
+                            <aside id="default-sidebar "
+                                   className="absolute bottom-[10%] rounded-2xl bg-[#262626] w-64 h-40 transition-transform -translate-x-full sm:translate-x-0"
+                            >
+                                <div
+                                    className="h-full px-2 py-2 overflow-y-auto dark:bg-black  ">
+                                    <ul className="space-y-2  text-white font-normal text-base">
+                                        <li>
+                                            <div
+                                                className="flex items-center p-2 m-1  cursor-pointer text-white rounded-lg dark:text-white hover:bg-gray-100 hover:bg-opacity-10  dark:hover:bg-gray-700 group">
+                                                <FontAwesomeIcon icon={faGear}/>
+                                                <span className="ml-3">Settings</span>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div
+                                                className="flex items-center p-2 m-1  cursor-pointer text-white rounded-lg dark:text-white hover:bg-gray-100 hover:bg-opacity-10  dark:hover:bg-gray-700 group">
+                                                <FontAwesomeIcon icon={faRepeat}/>
+                                                <span className="ml-3">Switch accounts</span>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div
+                                                onClick={() => handleLogout()}
+                                                className="flex items-center p-2 m-1  cursor-pointer text-white rounded-lg dark:text-white hover:bg-gray-100 hover:bg-opacity-10  dark:hover:bg-gray-700 group">
+                                                <FontAwesomeIcon icon={faArrowRightFromBracket}/>
+                                                <span className="ml-3">Log out</span>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </aside>
+                        }
                         <div
-                            className="flex items-center p-3 m-1 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                            onClick={() => handleShow()}
+                            className="flex items-center p-3 m-1  cursor-pointer  text-white rounded-lg dark:text-white hover:bg-gray-100  hover:bg-opacity-10 dark:hover:bg-gray-700 group">
                             <FontAwesomeIcon icon={faBars}/>
                             <span className="flex-1 ml-3 whitespace-nowrap">More</span>
                         </div>
+
+
                     </div>
                 </div>
             </aside>
