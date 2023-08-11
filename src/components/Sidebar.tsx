@@ -39,60 +39,60 @@ function Sidebar() {
 
                         <ul className="space-y-2   text-white font-normal text-base">
                             <li>
-                                <div
+                                <NavLink  to={"/"}
                                     className="flex items-center p-3 m-1  cursor-pointer text-white rounded-lg dark:text-white hover:bg-gray-100 hover:bg-opacity-10  dark:hover:bg-gray-700 group">
                                     <FontAwesomeIcon size={"xl"} icon={faHouse}/>
-                                    <NavLink to={"/"} className={"ml-3"}>Home</NavLink>
-                                </div>
+                                    <p className={"ml-3"}>Home</p>
+                                </NavLink>
 
                             </li>
                             <li>
-                                <div
+                                <NavLink to={"/"}
                                     className="flex  items-center p-3 m-1  cursor-pointer  text-white rounded-lg dark:text-white hover:bg-gray-100 hover:bg-opacity-10 dark:hover:bg-gray-700 group">
                                     <FontAwesomeIcon size={"xl"} icon={faMagnifyingGlass}/>
                                     <span className="flex-1   ml-3 whitespace-nowrap">Search</span>
-                                </div>
+                                </NavLink>
                             </li>
                             <li>
-                                <div
+                                <NavLink to={"/profile"}
                                     className="flex items-center   text-white p-3 m-1 cursor-pointer  rounded-lg dark:text-white hover:bg-gray-100 hover:bg-opacity-10 dark:hover:bg-gray-700 group">
                                     <FontAwesomeIcon size={"xl"} icon={faCompass} spin spinReverse/>
-                                    <span className="flex-1 ml-3 whitespace-nowrap">Explore</span>
-                                </div>
+                                    <p className="flex-1 ml-3 whitespace-nowrap">Explore</p>
+                                </NavLink>
                             </li>
                             <li>
-                                <div
+                                <NavLink to={"/profile"}
                                     className="flex items-center  text-white  p-3 m-1  cursor-pointer rounded-lg dark:text-white hover:bg-gray-100 hover:bg-opacity-10 dark:hover:bg-gray-700 group">
                                     <FontAwesomeIcon size={"xl"} icon={faClapperboard}/>
-                                    <span className="flex-1 ml-3 whitespace-nowrap">Reels</span>
-                                </div>
+                                    <p className="flex-1 ml-3 whitespace-nowrap">Reels</p>
+                                </NavLink>
                             </li>
                             <li>
-                                <div
+                                <NavLink to={"/profile"}
                                     className="flex items-center p-3 m-1  cursor-pointer  text-white rounded-lg dark:text-white hover:bg-gray-100 hover:bg-opacity-10 dark:hover:bg-gray-700 group">
                                     <FontAwesomeIcon size={"xl"} icon={faHeart}/>
-                                    <span className="flex-1 ml-3 whitespace-nowrap">Notifications</span>
-                                </div>
+                                    <p className="flex-1 ml-3 whitespace-nowrap">Notifications</p>
+                                </NavLink>
                             </li>
                             <li>
-                                <div
+                                <NavLink to={"/profile"}
                                     className="flex items-center p-3 m-1  cursor-pointer  text-white rounded-lg dark:text-white hover:bg-gray-100 hover:bg-opacity-10 dark:hover:bg-gray-700 group">
                                     <FontAwesomeIcon size={"xl"} icon={faFacebookMessenger}/>
                                     <span className="flex-1 ml-3 whitespace-nowrap">Messages</span>
                                     <span
                                         className="inline-flex items-center justify-center w-3 h-3 p-3 ml-3 text-sm font-medium text-white bg-[#FE0000] rounded-full dark:bg-red ">3</span>
-                                </div>
+                                </NavLink>
                             </li>
                             <li>
-                                <div
+                                <NavLink to={"/profile"}
                                     className="flex items-center p-3 m-1  cursor-pointer  text-white rounded-lg dark:text-white hover:bg-gray-100 hover:bg-opacity-10 dark:hover:bg-gray-700 group">
                                     <div className={"w-6"}>
                                         <img className={"rounded-full"}
                                              src="https://static.vecteezy.com/system/resources/previews/005/544/718/original/profile-icon-design-free-vector.jpg"
                                              alt=""/>
                                     </div>
-                                    <NavLink to={"/profile"} className={"flex-1 ml-3 whitespace-nowrap"}>Profile</NavLink>
-                                </div>
+                                    <p  className={"flex-1 ml-3 whitespace-nowrap"}>Profile</p>
+                                </NavLink>
                             </li>
                         </ul>
 

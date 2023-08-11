@@ -1,13 +1,14 @@
-import {authActions, LoginPayload} from "./authSlice";
+import {authActions, LoginPayload, RegisterPayload} from "./authSlice";
 import {PayloadAction} from "@reduxjs/toolkit";
-import {put, take,all, fork, call, } from 'redux-saga/effects';
+import {put, take,all, fork, call, takeLatest} from 'redux-saga/effects';
 import {TokenResponse, } from "../../models";
 import authApi from "../../api/authApi";
+import {useLocation} from "react-router-dom";
+
 // import userApi from "../../api/uerApi";
 
 
 // function* FetchCurrentUser() {
-//
 //     try {
 //         const data: User = yield call(userApi.getCurrentUser);
 //         yield put(authActions.setCurrentUser(data));
@@ -15,6 +16,27 @@ import authApi from "../../api/authApi";
 //         console.log(error.message)
 //     }
 // }
+
+// function* watchGetCurrentUser() {
+//     yield takeLatest(authActions.getCurrentUser.type, FetchCurrentUser);
+// }
+
+
+function* handleRegister (action: PayloadAction<RegisterPayload>) {
+
+
+    try {
+        yield call(authApi.register, action.payload)
+        yield put(authActions.registerSuccess())
+
+    }catch (e: any) {
+        yield put(authActions.registerFailed(e.message));
+    }
+}
+function* watchRegisterFlow() {
+   yield takeLatest(authActions.register.type, handleRegister)
+}
+
 function* handleLogin(payload: LoginPayload) {
     try {
         const data: TokenResponse = yield call(authApi.login, payload);
@@ -25,7 +47,8 @@ function* handleLogin(payload: LoginPayload) {
         yield put(authActions.getCurrentUser());
 
     } catch (error: any) {
-        yield put(authActions.loginFailed(error.message));
+        yield put(authActions.loginFailed(error.data.message));
+
     }
 }
 function* handleLogout() {
@@ -34,9 +57,6 @@ function* handleLogout() {
 }
 
 
-// function* watchGetCurrentUser() {
-//     yield takeLatest(authActions.getCurrentUser.type, FetchCurrentUser);
-// }
 function* watchLoginFlow() {
     while (true) {
         const isLoggedIn = Boolean(localStorage.getItem('accessToken'));
@@ -56,6 +76,7 @@ export function* authSaga() {
 
     yield all([
         call(watchLoginFlow),
+        call(watchRegisterFlow),
         // call(watchGetCurrentUser),
     ]);
 }
