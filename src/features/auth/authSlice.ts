@@ -7,14 +7,12 @@ export interface LoginPayload {
     salted_password: string;
 }
 
-
 export interface RegisterPayload {
     email: string;
     salted_password: string;
     first_name: string;
     last_name: string;
 }
-
 
 export interface AuthState{
     errorData: string;
@@ -29,6 +27,7 @@ export interface AuthState{
 
     token: TokenResponse["access_token"]["token"];
 }
+
 const initialState: AuthState ={
     errorData: "",
 
@@ -42,6 +41,7 @@ const initialState: AuthState ={
     ,
     token: localStorage.getItem('accessToken') || '',
 }
+
 
 const authSlice = createSlice({
     name: 'auth',
@@ -63,8 +63,6 @@ const authSlice = createSlice({
             state.isRegister = false;
         },
 
-
-
         login(state, action:PayloadAction<LoginPayload>){
             state.logging = true
         },
@@ -81,17 +79,12 @@ const authSlice = createSlice({
             state.logging = false;
         },
 
-
         setCurrentUser(state,action:PayloadAction<User>){
             state.currentUser = action.payload
         },
         getCurrentUser(state,){
             state.currentUser =undefined;
         },
-
-
-
-
 
         logout(state){
             state.isLoggedIn = false;
@@ -101,8 +94,10 @@ const authSlice = createSlice({
     }
 })
 
+
 //Action
 export const authActions = authSlice.actions;
+
 
 //Selectors
 export const selectIsLoggedIn = (state:RootState) => state.auth.isLoggedIn;
@@ -112,6 +107,7 @@ export const selectErrorData = (state:RootState) => state.auth.errorData;
 export const selectRegisterSuccess = (state:RootState) => state.auth.RegisterSuccess;
 export const selectCurrentUser = (state:RootState) => state.auth.currentUser;
 export const selectToken = (state:RootState) => state.auth.token;
+
 
 
 const authReducer = authSlice.reducer;
