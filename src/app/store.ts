@@ -2,12 +2,14 @@ import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
 import createSagaMiddleware from 'redux-saga'
 import rootSaga from "./rootSaga";
 import authReducer from "../features/auth/authSlice";
+import postReducer from "../features/post/postSlice";
 
 
 const sagaMiddleware = createSagaMiddleware()
 export const store = configureStore({
     reducer: {
         auth: authReducer,
+        post: postReducer,
     },
     middleware: (getDefaultMiddleware) =>
         getDefaultMiddleware().concat(sagaMiddleware)

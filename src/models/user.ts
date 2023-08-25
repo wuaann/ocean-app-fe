@@ -1,14 +1,16 @@
+import {Image} from "./common";
+
 export interface User{
 
     id?: string | number,
-    name: string,
+    last_name: string,
+    first_name: string,
     email: string,
-
-    role: number,
-    phone:string,
-    address:string,
-
+    status:boolean ,
+    role: string,
     created_at?: string,
     update_at?: string,
+    avatar: Image
 
 }
+

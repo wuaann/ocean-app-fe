@@ -1,11 +1,20 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 
 import {Story} from "./components/story";
 import {Post} from "./components/post";
+import {useAppDispatch, useAppSelector} from "../../app/hooks";
+import {postActions, selectListPost} from "./postSlice";
 
 
 function HomePage() {
 
+    const dispatch = useAppDispatch()
+
+    useEffect(() =>{
+        dispatch(postActions.getAllPost())
+
+    })
+    const ListPost = useAppSelector(selectListPost)
     return (
         <>
 
@@ -14,7 +23,7 @@ function HomePage() {
                 <div className={"col-span-4 "}>
                     <Story/>
                     <div className={"flex flex-col"}>
-                        <Post />
+                        <Post listPost={ListPost.data}/>
                     </div>
                 </div>
 

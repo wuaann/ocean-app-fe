@@ -37,8 +37,7 @@ const initialState: AuthState ={
     isLoggedIn:false,
     logging: false,
 
-    currentUser: undefined
-    ,
+    currentUser: undefined,
     token: localStorage.getItem('accessToken') || '',
 }
 

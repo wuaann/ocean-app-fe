@@ -1,23 +1,27 @@
 'use client';
 
-import { Carousel } from 'flowbite-react';import * as React from 'react';
-// import {Carousel} from "@material-tailwind/react";
+import {Carousel} from 'flowbite-react';
+import * as React from 'react';
 import {Image} from "../../../models";
 
 
-export interface CarouselProps{
+export interface CarouselProps {
     images: Image[]
 }
 
 export function CarouselImg({images}: CarouselProps) {
+
+
+    console.log(typeof images)
+
     return (
         <>
             {
                 images.length > 1 ?
                     <>
-                        <Carousel slide={false}  className={"rounded-xl border border-gray-700"}>
+                        <Carousel slide={false} className={"rounded-xl border border-gray-700"}>
                             {
-                                images.map(item =>(
+                                images.map(item => (
 
                                     <img
                                         key={item.id}
@@ -28,20 +32,18 @@ export function CarouselImg({images}: CarouselProps) {
                                 ))
                             }
                         </Carousel>
-                    </>:
+                    </> :
                     <>
-
                         <img
-
                             src={images[0].url}
                             alt={"3"}
                             className="h-full w-full object-cover"
                         />
 
-
                     </>
             }
 
-</>
+
+        </>
     );
 };

@@ -1,12 +1,20 @@
-
 export interface ListResponse<T> {
-    code: number,
-    message: string,
     data: T[]
+    paging: Paging
 }
+
 export interface Image {
-    id?: string| number,
+    id?: string | number,
     url?: string,
+}
+
+export interface Paging {
+    page: number,
+    limit: number,
+    total: number,
+    cursor: string,
+    next_cursor: string
+
 }
 
 export interface TokenResponse {

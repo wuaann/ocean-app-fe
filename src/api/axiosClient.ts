@@ -1,9 +1,6 @@
 import axios from 'axios';
 import queryString from "query-string";
-// import {getToken} from "../utils";
-const getToken = () => {
-  
-}
+import {getToken} from "../utils";
 
 const axiosClient = axios.create({
     baseURL: process.env.REACT_APP_API_URL,
@@ -18,7 +15,7 @@ axiosClient.interceptors.request.use(async (config) => {
 })
 axiosClient.interceptors.response.use((response) => {
     if (response && response.data) {
-        return response.data.data;
+        return response.data;
     }
     return response;
 }, (error) => {
