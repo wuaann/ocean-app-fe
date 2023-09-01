@@ -40,15 +40,15 @@ function* watchRegisterFlow() {
 function* handleLogin(payload: LoginPayload) {
     try {
         const data: TokenResponse = yield call(authApi.login, payload);
+
         if (data) {
-            yield put(authActions.loginSuccess(data.access_token["token"]));
+            yield put(authActions.loginSuccess(data.data.access_token["token"]));
         }
-        localStorage.setItem('accessToken', data.access_token["token"]);
+        localStorage.setItem('accessToken', data.data.access_token["token"]);
         yield put(authActions.getCurrentUser());
 
     } catch (error: any) {
-        yield put(authActions.loginFailed(error.data.message));
-
+        yield put(authActions.loginFailed(error.message));
     }
 }
 function* handleLogout() {

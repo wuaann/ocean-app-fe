@@ -7,6 +7,7 @@ export interface PostState{
     errorData: string;
     isLoading: boolean;
     listPost: ListResponse<PostModel>
+    ImgFile: File | null
 }
 
 const initialState: PostState = {
@@ -21,7 +22,8 @@ const initialState: PostState = {
             cursor: "",
             next_cursor: "string"
         }
-    }
+    },
+    ImgFile: null
 }
 
 

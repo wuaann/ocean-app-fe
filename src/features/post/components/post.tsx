@@ -7,6 +7,7 @@ import {faBookmark, faComment, faFaceSmile, faHeart, faPaperPlane} from "@fortaw
 import {CarouselImg} from "./carousel";
 import { PostModel} from "../../../models";
 import SeeMoreText from "./seeMoreText";
+import {getTimes} from "../../../utils";
 
 
 
@@ -15,6 +16,7 @@ interface postProp {
 }
 
 export function Post({listPost}: postProp) {
+
     
     return (
         <>
@@ -25,12 +27,12 @@ export function Post({listPost}: postProp) {
                             <div className={"flex my-2 mr-1.5 ml-1 flex-row justify-between"}>
                                 <div className={"flex flex-row gap-2 items-center justify-center text-sm"}>
                                     <img className={"w-8 h-8 rounded-full cursor-pointer"}
-                                         src={value.user.avatar}
+                                         src={value.user.avatar.url}
                                          alt=""/>
                                     <p className={"hover:text-gray-400 cursor-pointer"}>
-                                        {value.user.last_name + value.user.last_name}
+                                        {value.user.last_name +" "+ value.user.last_name}
                                     </p>
-                                    <span className={"text-gray-400"}>{value.created_at}</span>
+                                    <span className={"text-gray-400"}>{getTimes(value.created_at)}</span>
 
                                 </div>
                                 <div>
@@ -47,7 +49,7 @@ export function Post({listPost}: postProp) {
                             <div className={"text-2xl mt-3 pb-1.5 flex flex-row justify-between items-center"}>
                                 <div className={" flex flex-row gap-4"}>
                                     <FontAwesomeIcon className={"cursor-pointer"} icon={faHeart}/>
-                                    <FontAwesomeIcon className={"cursor-pointer"} icon={faComment} flip="horizontal"/>
+                                    <FontAwesomeIcon className={"cursor-pointer"} icon={faComment} />
                                     <FontAwesomeIcon className={"cursor-pointer"} icon={faPaperPlane}/>
                                 </div>
                                 <div>

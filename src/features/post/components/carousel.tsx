@@ -6,22 +6,25 @@ import {Image} from "../../../models";
 
 
 export interface CarouselProps {
-    images: Image[]
+    images: Image
 }
 
 export function CarouselImg({images}: CarouselProps) {
 
+    const listImages:Image[] = []
 
-    console.log(typeof images)
+
+    listImages.push(images);
+
 
     return (
         <>
             {
-                images.length > 1 ?
+                listImages.length > 1 ?
                     <>
                         <Carousel slide={false} className={"rounded-xl border border-gray-700"}>
                             {
-                                images.map(item => (
+                                listImages.map(item => (
 
                                     <img
                                         key={item.id}
@@ -35,7 +38,7 @@ export function CarouselImg({images}: CarouselProps) {
                     </> :
                     <>
                         <img
-                            src={images[0].url}
+                            src={listImages[0].url}
                             alt={"3"}
                             className="h-full w-full object-cover"
                         />

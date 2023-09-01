@@ -13,7 +13,7 @@ function HomePage() {
     useEffect(() =>{
         dispatch(postActions.getAllPost())
 
-    })
+    },[])
     const ListPost = useAppSelector(selectListPost)
     return (
         <>

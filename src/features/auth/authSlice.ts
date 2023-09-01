@@ -25,7 +25,7 @@ export interface AuthState{
 
     currentUser?: User;
 
-    token: TokenResponse["access_token"]["token"];
+    token: TokenResponse["data"]["access_token"]["token"];
 }
 
 const initialState: AuthState ={
@@ -59,14 +59,14 @@ const authSlice = createSlice({
         },
 
         registerFailed(state, action:PayloadAction<string> ){
-            state.isRegister = false;
+            state.errorData = action.payload;
         },
 
         login(state, action:PayloadAction<LoginPayload>){
             state.logging = true
         },
 
-        loginSuccess(state, action:PayloadAction<TokenResponse["access_token"]["token"]>){
+        loginSuccess(state, action:PayloadAction< TokenResponse["data"]["access_token"]["token"]>){
             state.logging = false;
             state.isLoggedIn=true;
             state.token = action.payload

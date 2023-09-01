@@ -18,15 +18,17 @@ export interface Paging {
 }
 
 export interface TokenResponse {
-    access_token: {
-        token: string,
-        created: string,
-        expiry: number,
-    }
-    refresh_token: {
-        token: string,
-        created: string,
-        expiry: number,
-    }
+   data:{
+       access_token: {
+           token: string,
+           created: string,
+           expiry: number,
+       }
+       refresh_token: {
+           token: string,
+           created: string,
+           expiry: number,
+       }
+   }
 
 }
